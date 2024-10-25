@@ -22,3 +22,18 @@ class Player(CircleShape):
     def draw(self, screen):
         """Draw a white player"""
         pygame.draw.polygon(screen, (0xff, 0xff, 0xff), self.triangle(), 2)
+
+    def update(self, dt):
+        """Update player rotation on key pressed"""
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_h]:
+            # anti-clockwise
+            self.rotate(-dt)
+        if keys[pygame.K_l]:
+            # clockwise
+            self.rotate(dt)
+
+    def rotate(self, dt):
+        """Rotate player"""
+        self.rotation += PLAYER_TURN_SPEED * dt
