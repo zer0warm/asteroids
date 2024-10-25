@@ -4,6 +4,7 @@ from constants import *
 
 def main():
     pygame.init()
+    clock = pygame.time.Clock()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     while True:
@@ -12,6 +13,7 @@ def main():
                 return
         screen.fill((0, 0, 0))
         pygame.display.flip()
+        clock.tick(60)
 
 if __name__ == '__main__':
     main()
