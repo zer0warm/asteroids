@@ -7,6 +7,9 @@ def main():
     pygame.init()
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    updatables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+    Player.containers = (updatables, drawables)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     # time in second showing delta between frames
     dt = 0
@@ -16,8 +19,10 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0, 0, 0))
-        player.update(dt)
-        player.draw(screen)
+        for obj in updatables:
+            obj.update(dt)
+        for obj in drawables:
+            obj.draw(screen)
         pygame.display.flip()
         # dt unit is second
         dt = clock.tick(60) / 1000
