@@ -19,3 +19,9 @@ class CircleShape(pygame.sprite.Sprite):
     def update(self, dt):
         """Subclass must override this method"""
         pass
+
+    def check_collision(self, other):
+        radius_distance = self.position.distance_to(other.position)
+        if self.radius + other.radius >= radius_distance:
+            return True
+        return False
